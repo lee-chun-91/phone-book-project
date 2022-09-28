@@ -1,11 +1,10 @@
 <template>
-  <div></div>
+  <div>로고</div>
 </template>
 
-<script>
-export default {
-  name: "HeaderBar",
-};
-</script>
+<script lang="ts">
+import Vue from "vue";
 
+export default Vue.extend({});
+</script>
 <style scoped></style>
