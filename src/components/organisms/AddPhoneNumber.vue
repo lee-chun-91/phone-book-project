@@ -33,11 +33,13 @@
 import Vue from "vue";
 import TextInput from "@/components/atoms/TextInput.vue";
 import AtomicButton from "@/components/atoms/AtomicButton.vue";
+import { MutationTypes } from "@/store/mutations";
 
 export interface InputValue {
   text: string;
   isValid: boolean;
 }
+
 export default Vue.extend({
   components: { AtomicButton, TextInput },
   data() {
@@ -65,6 +67,9 @@ export default Vue.extend({
     },
   },
   methods: {
+    // moment: function () {
+    //   return moment();
+    // },
     // data 변경 & 유효성 검사
     updateName(value: string) {
       this.validateName(value);
@@ -138,9 +143,28 @@ export default Vue.extend({
     // 폼 제출
     onSubmitInfo(event: HTMLFormElement) {
       event.preventDefault();
+      let date = new Date();
+      let data = {
+        name: this.name.text,
+        email: this.email.text,
+        phoneNumber: this.phoneNumber.text,
+        date:
+          date.getFullYear() +
+          "년 " +
+          (date.getMonth() + 1) +
+          "월 " +
+          date.getDate() +
+          "일 " +
+          date.getHours() +
+          "시 " +
+          date.getMinutes() +
+          "분",
+      };
+      // this.$store.commit();
       this.updateName("");
       this.updateEmail("");
       this.updatePhoneNumber("");
+      this.$store.commit(MutationTypes.ADD_ITEM, data);
     },
   },
 });
