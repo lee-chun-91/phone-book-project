@@ -1,18 +1,10 @@
 import Vue, { PropType } from "vue";
-import Vuex from "vuex";
-import AddPhoneNumber from "@/components/organisms/AddPhoneNumber.vue";
+import Vuex, { StoreOptions } from "vuex";
+import { RootState, state } from "./state";
+import { mutations } from "./mutations";
 
 Vue.use(Vuex);
 
-const store = {
-  state: state,
-};
-
-export interface PhoneNumberItem {
-  name: string;
-  email: string;
-  phoneNumber: string;
-  date: string;
-}
+const store: StoreOptions<RootState> = { state: state, mutations: mutations };
 
 export default new Vuex.Store(store);
