@@ -1,48 +1,50 @@
 <template>
-  <div class="addPhoneNumber">
+  <div class="updatePhoneNumber" >
     <form @submit="onSubmitInfo">
-      <TextInput
+      <PhoneNumberInput
         inputTitle="이름"
         :value="name"
         placeholder="영어,공백 포함 20자 이하"
         @input="updateName"
-      ></TextInput>
-      <TextInput
+      ></PhoneNumberInput>
+      <PhoneNumberInput
         inputTitle="이메일"
         :value="email"
         @input="updateEmail"
         placeholder="40자 이하"
-      ></TextInput>
-      <TextInput
+      ></PhoneNumberInput>
+      <PhoneNumberInput
         inputTitle="전화번호"
         placeholder="숫자만 입력"
         :value="phoneNumber"
         :maxLength="13"
         @input="updatePhoneNumber"
-      ></TextInput>
-      <AtomicButton
-        button-name="전화번호 등록"
+      ></PhoneNumberInput>
+      <BaseButton
+        button-name="정보 수정"
         :is-passed="isPassed"
-      ></AtomicButton>
+      ></BaseButton>
     </form>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import TextInput from "@/components/atoms/PhoneNumberInput.vue";
-import AtomicButton from "@/components/atoms/BaseButton.vue";
+import PhoneNumberInput from "@/components/atoms/PhoneNumberInput.vue";
+import BaseButton from "@/components/atoms/BaseButton.vue";
 import { MutationTypes } from "@/store/mutations";
+import { PhoneNumberItem } from "@/store/state";
 
-export interface InputValue {
-  text: string;
-  isValid: boolean;
-}
+// export interface InputValue {
+//   text: string;
+//   isValid: boolean;
+// }
 
 export default Vue.extend({
-  components: { AtomicButton, TextInput },
+  components: { BaseButton, PhoneNumberInput },
   data() {
     return {
+      // isLoading: true,
       name: {
         text: "",
         isValid: false,
@@ -55,8 +57,11 @@ export default Vue.extend({
         text: "",
         isValid: false,
       },
+      date : "",
+      phoneNumberId: Number(this.$route.params.id),
     };
   },
+
   computed: {
     // 버튼 활성화 버튼
     isPassed(): boolean {
@@ -65,10 +70,25 @@ export default Vue.extend({
       return result;
     },
   },
+
+  created() {
+    this.phoneNumberItem();
+    console.log(this.phoneNumberId);
+  },
+
   methods: {
-    // moment: function () {
-    //   return moment();
-    // },
+    phoneNumberItem() {
+      let phoneNumberItem: PhoneNumberItem = this.$store.state.phoneNumberList[this.phoneNumberId];
+      console.log(phoneNumberItem);
+
+      this.name.text = phoneNumberItem.name;
+      this.email.text = phoneNumberItem.email;
+      this.phoneNumber.text = phoneNumberItem.phoneNumber;
+      this.date = phoneNumberItem.date;
+      // this.isLoading = false;
+      return phoneNumberItem
+    },
+
     // data 변경 & 유효성 검사
     updateName(value: string) {
       this.validateName(value);
@@ -140,36 +160,31 @@ export default Vue.extend({
     },
 
     // 폼 제출
-    onSubmitInfo(event: HTMLFormElement) {
+    onSubmitInfo: function(event: HTMLFormElement) {
       event.preventDefault();
-      let date = new Date();
       let data = {
         name: this.name.text,
         email: this.email.text,
         phoneNumber: this.phoneNumber.text,
-        date:
-          date.getFullYear() +
-          "년 " +
-          (date.getMonth() + 1) +
-          "월 " +
-          date.getDate() +
-          "일 " +
-          date.getHours() +
-          "시 " +
-          date.getMinutes() +
-          "분",
+        date: this.date,
+        id: this.phoneNumberId,
       };
+
+      console.log(data);
+
       this.updateName("");
       this.updateEmail("");
       this.updatePhoneNumber("");
-      this.$store.commit(MutationTypes.ADD_ITEM, data);
-    },
+      this.$store.commit(MutationTypes.UPDATE_ITEM, data);
+    }
   },
+
+
 });
 </script>
 
 <style scoped>
-.addPhoneNumber {
+.updatePhoneNumber {
   border: 1px solid antiquewhite;
 }
 </style>

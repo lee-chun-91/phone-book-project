@@ -3,6 +3,7 @@ export interface PhoneNumberItem {
   email: string;
   phoneNumber: string;
   date: string;
+  id?: number;
 }
 
 export const state = {

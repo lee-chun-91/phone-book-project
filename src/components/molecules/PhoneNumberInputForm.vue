@@ -1,5 +1,5 @@
 <template>
-  <div class="addPhoneNumber">
+  <div class="container">
     <form @submit="onSubmitInfo">
       <TextInput
         inputTitle="이름"
@@ -28,16 +28,11 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from "vue";
 import TextInput from "@/components/atoms/PhoneNumberInput.vue";
 import AtomicButton from "@/components/atoms/BaseButton.vue";
 import { MutationTypes } from "@/store/mutations";
-
-export interface InputValue {
-  text: string;
-  isValid: boolean;
-}
 
 export default Vue.extend({
   components: { AtomicButton, TextInput },
@@ -106,7 +101,7 @@ export default Vue.extend({
         } else {
           if (value.length < 8) {
             this.phoneNumber.text = value;
-          } else if (value.length == 8) {
+          } else if (value.length === 8) {
             // console.log(value.substring(0, 3));
             // console.log(value.substring(3, 8));
             this.phoneNumber.text =
@@ -159,6 +154,7 @@ export default Vue.extend({
           date.getMinutes() +
           "분",
       };
+      // this.$store.commit();
       this.updateName("");
       this.updateEmail("");
       this.updatePhoneNumber("");
@@ -168,8 +164,4 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped>
-.addPhoneNumber {
-  border: 1px solid antiquewhite;
-}
-</style>
+<style scoped></style>
