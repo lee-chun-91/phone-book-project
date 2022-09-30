@@ -1,10 +1,11 @@
 <template>
-  <div>로고</div>
+  <div>Footer</div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from "vue";
 
 export default Vue.extend({});
 </script>
+
 <style scoped></style>

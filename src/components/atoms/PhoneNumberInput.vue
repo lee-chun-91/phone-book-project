@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <!--속성값에 동적 데이터 넣고 싶으면 v-vind 해서 연결-->
+    <!--속성값에 동적 데이터 넣고 싶으면 :(v-vind) 로 연결-->
     <label :for="inputTitle">{{ inputTitle }}: </label>
     <input
       type="text"
