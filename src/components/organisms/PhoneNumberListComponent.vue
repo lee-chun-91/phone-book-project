@@ -1,5 +1,5 @@
 <template>
-  <div class="tableContainer">
+  <div class="phoneNumberListComponent">
     <PhoneNumberListTable></PhoneNumberListTable>
   </div>
 </template>

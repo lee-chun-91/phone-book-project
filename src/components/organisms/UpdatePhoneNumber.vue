@@ -1,5 +1,5 @@
 <template>
-  <div class="updatePhoneNumber" >
+  <div class="updatePhoneNumber">
     <form @submit="onSubmitInfo">
       <PhoneNumberInput
         inputTitle="이름"
@@ -20,10 +20,7 @@
         :maxLength="13"
         @input="updatePhoneNumber"
       ></PhoneNumberInput>
-      <BaseButton
-        button-name="정보 수정"
-        :is-passed="isPassed"
-      ></BaseButton>
+      <BaseButton button-name="정보 수정" :is-passed="isPassed"></BaseButton>
     </form>
   </div>
 </template>
@@ -57,7 +54,7 @@ export default Vue.extend({
         text: "",
         isValid: false,
       },
-      date : "",
+      date: "",
       phoneNumberId: Number(this.$route.params.id),
     };
   },
@@ -73,20 +70,18 @@ export default Vue.extend({
 
   created() {
     this.phoneNumberItem();
-    console.log(this.phoneNumberId);
   },
 
   methods: {
     phoneNumberItem() {
-      let phoneNumberItem: PhoneNumberItem = this.$store.state.phoneNumberList[this.phoneNumberId];
-      console.log(phoneNumberItem);
+      let phoneNumberItem: PhoneNumberItem =
+        this.$store.state.phoneNumberList[this.phoneNumberId];
 
       this.name.text = phoneNumberItem.name;
       this.email.text = phoneNumberItem.email;
       this.phoneNumber.text = phoneNumberItem.phoneNumber;
       this.date = phoneNumberItem.date;
-      // this.isLoading = false;
-      return phoneNumberItem
+      return phoneNumberItem;
     },
 
     // data 변경 & 유효성 검사
@@ -160,7 +155,7 @@ export default Vue.extend({
     },
 
     // 폼 제출
-    onSubmitInfo: function(event: HTMLFormElement) {
+    onSubmitInfo: function (event: HTMLFormElement) {
       event.preventDefault();
       let data = {
         name: this.name.text,
@@ -176,10 +171,8 @@ export default Vue.extend({
       this.updateEmail("");
       this.updatePhoneNumber("");
       this.$store.commit(MutationTypes.UPDATE_ITEM, data);
-    }
+    },
   },
-
-
 });
 </script>
 

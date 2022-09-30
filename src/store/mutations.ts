@@ -14,21 +14,22 @@ export const mutations = {
   [MutationTypes.ADD_ITEM](state: RootState, phoneNumberItem: PhoneNumberItem) {
     state.phoneNumberList.push(phoneNumberItem);
   },
-  // UPDATE_ITEM 이 제대로 작동을 안함
   [MutationTypes.UPDATE_ITEM](
     state: RootState,
-    phoneNumberItem: PhoneNumberItem) {
+    phoneNumberItem: PhoneNumberItem
+  ) {
     state.phoneNumberList = state.phoneNumberList.map((item, index) =>
-      index === phoneNumberItem.id ? phoneNumberItem : item)
-    // console.log(state.phoneNumberList);
+      index === phoneNumberItem.id ? phoneNumberItem : item
+    );
   },
   [MutationTypes.DELETE_ITEM](state: RootState, deleteItemIndex: number) {
-    state.phoneNumberList = state.phoneNumberList.filter((item, index) => index !== deleteItemIndex);
+    state.phoneNumberList = state.phoneNumberList.filter(
+      (item, index) => index !== deleteItemIndex
+    );
   },
   [MutationTypes.DELETE_ALL](state: RootState) {
-    state.phoneNumberList = []
-  }
-
+    state.phoneNumberList = [];
+  },
 };
 
 export type Mutations = typeof mutations;

@@ -1,9 +1,9 @@
 export interface PhoneNumberItem {
+  id?: number;
   name: string;
   email: string;
   phoneNumber: string;
   date: string;
-  id?: number;
 }
 
 export const state = {
