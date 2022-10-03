@@ -1,7 +1,7 @@
 <template>
   <div class="phoneNumberInput">
     <!--속성값에 동적 데이터 넣고 싶으면 :(v-vind) 로 연결-->
-    <label :for="inputTitle">{{ inputTitle }}: </label>
+    <label :for="inputTitle">{{ inputTitle }} </label>
     <input
       type="text"
       :id="inputTitle"
@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
-import { InputValue } from "@/components/organisms/AddPhoneNumber.vue";
+import { InputValue } from "@/components/organisms/AddPhoneNumberComponent.vue";
 
 export default Vue.extend({
   props: {
@@ -53,9 +53,25 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.container {
-  margin: 10px 10px;
-  border: none;
+.phoneNumberInput {
+  display: flex;
+  flex-direction: column;
+}
+
+.phoneNumberInput > label,
+p {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 19px;
+  color: #495057;
+
+  margin-top: 4px;
+}
+
+.phoneNumberInput > input {
+  margin: 5px 0 0 0;
 }
 
 .hidden {

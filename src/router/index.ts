@@ -1,4 +1,4 @@
-import AddPhoneNumber from "@/components/organisms/AddPhoneNumber.vue";
+import AddPhoneNumber from "@/components/organisms/AddPhoneNumberComponent.vue";
 import VueRouter from "vue-router";
 import PhoneNumberListComponent from "@/components/organisms/PhoneNumberListComponent.vue";
 import UpdatePhoneNumber from "@/components/organisms/UpdatePhoneNumber.vue";
