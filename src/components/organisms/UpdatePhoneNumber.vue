@@ -1,6 +1,6 @@
 <template>
   <div class="updatePhoneNumber">
-    <form @submit="onSubmitInfo">
+    <form @submit="onSubmitInfo" class="formContainer">
       <PhoneNumberInput
         inputTitle="이름"
         :value="name"
@@ -20,7 +20,9 @@
         :maxLength="13"
         @input="updatePhoneNumber"
       ></PhoneNumberInput>
-      <BaseButton button-name="정보 수정" :is-passed="isPassed"></BaseButton>
+      <div class="buttonAria">
+        <BaseButton button-name="정보 수정" :is-passed="isPassed"></BaseButton>
+      </div>
     </form>
   </div>
 </template>
@@ -171,6 +173,10 @@ export default Vue.extend({
       this.updateEmail("");
       this.updatePhoneNumber("");
       this.$store.commit(MutationTypes.UPDATE_ITEM, data);
+      this.$message({
+        message: "정보가 수정되었습니다.",
+        type: "success",
+      });
     },
   },
 });
@@ -178,6 +184,20 @@ export default Vue.extend({
 
 <style scoped>
 .updatePhoneNumber {
-  border: 1px solid antiquewhite;
+  background: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formContainer {
+  width: 50%;
+}
+
+.buttonAria {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
 }
 </style>

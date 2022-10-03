@@ -35,7 +35,7 @@ export default Vue.extend({
 
 <style scoped>
 #searchInput {
-  height: 30px;
+  height: 25px;
   width: 200px;
 }
 </style>

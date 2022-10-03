@@ -1,8 +1,6 @@
 <template>
   <div id="app">
     <LayoutComponent></LayoutComponent>
-    <!--    <AddPhoneNumber></AddPhoneNumber>-->
-    <!--    <PhoneNumberTableContainer></PhoneNumberTableContainer>-->
   </div>
 </template>
 

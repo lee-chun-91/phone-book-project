@@ -1,7 +1,9 @@
 <template>
   <div class="layout">
     <HeaderBar></HeaderBar>
-    <router-view></router-view>
+    <div class="contentContainer">
+      <router-view></router-view>
+    </div>
     <FooterBar></FooterBar>
   </div>
 </template>
@@ -16,4 +18,15 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contentContainer {
+  background: rgb(176, 223, 238);
+  padding: 8px 10px;
+  width: 80%;
+}
+</style>

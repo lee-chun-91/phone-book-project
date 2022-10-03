@@ -1,6 +1,6 @@
 <template>
   <div class="addPhoneNumber">
-    <form @submit="onSubmitInfo">
+    <form @submit="onSubmitInfo" class="formContainer">
       <TextInput
         inputTitle="이름"
         :value="name"
@@ -20,10 +20,12 @@
         :maxLength="13"
         @input="updatePhoneNumber"
       ></TextInput>
-      <AtomicButton
-        button-name="전화번호 등록"
-        :is-passed="isPassed"
-      ></AtomicButton>
+      <div class="buttonAria">
+        <AtomicButton
+          button-name="전화번호 등록"
+          :is-passed="isPassed"
+        ></AtomicButton>
+      </div>
     </form>
   </div>
 </template>
@@ -54,6 +56,16 @@ export default Vue.extend({
       phoneNumber: {
         text: "",
         isValid: false,
+      },
+      form: {
+        name: "",
+        region: "",
+        date1: "",
+        date2: "",
+        delivery: false,
+        type: [],
+        resource: "",
+        desc: "",
       },
     };
   },
@@ -142,6 +154,7 @@ export default Vue.extend({
     // 폼 제출
     onSubmitInfo(event: HTMLFormElement) {
       event.preventDefault();
+
       let date = new Date();
       let data = {
         name: this.name.text,
@@ -163,6 +176,10 @@ export default Vue.extend({
       this.updateEmail("");
       this.updatePhoneNumber("");
       this.$store.commit(MutationTypes.ADD_ITEM, data);
+      this.$message({
+        message: "전화번호가 등록되었습니다.",
+        type: "success",
+      });
     },
   },
 });
@@ -170,6 +187,20 @@ export default Vue.extend({
 
 <style scoped>
 .addPhoneNumber {
-  border: 1px solid antiquewhite;
+  background: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formContainer {
+  width: 50%;
+}
+
+.buttonAria {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
 }
 </style>

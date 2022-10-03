@@ -14,9 +14,10 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.tableContainer {
+.phoneNumberListComponent {
+  background: white;
+  padding: 10px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
 }
 </style>
